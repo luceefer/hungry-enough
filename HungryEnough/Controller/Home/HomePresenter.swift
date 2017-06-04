@@ -41,7 +41,7 @@ class HomePresenter: NSObject, BasePresenter {
 
 extension HomePresenter: GMSMapViewDelegate {
 
-    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         self.findNearbyBusiness(at: position)
     }
 
