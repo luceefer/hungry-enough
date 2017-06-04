@@ -1,7 +1,62 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="N4V-cI-uYj">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Base Navigation Controller-->
+        <scene sceneID="OaS-Fk-SiZ">
+            <objects>
+                <navigationController id="N4V-cI-uYj" customClass="BaseNavigationController" customModule="HungryEnough" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="n6K-yO-qUa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cYY-jQ-ViD" kind="relationship" relationship="rootViewController" id="eg0-8d-So4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3b6-fp-oNf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1273" y="83"/>
+        </scene>
+        <!--Home Controller-->
+        <scene sceneID="j91-F7-tZ4">
+            <objects>
+                <viewController id="cYY-jQ-ViD" customClass="HomeController" customModule="HungryEnough" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y4T-zm-9Yt"/>
+                        <viewControllerLayoutGuide type="bottom" id="AWq-Zt-ygk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x75-68-1xA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7o-OU-pql" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AWq-Zt-ygk" firstAttribute="top" secondItem="U7o-OU-pql" secondAttribute="bottom" id="7Mt-Hc-Uqw"/>
+                            <constraint firstItem="U7o-OU-pql" firstAttribute="top" secondItem="Y4T-zm-9Yt" secondAttribute="bottom" id="9t7-qb-c3Q"/>
+                            <constraint firstItem="U7o-OU-pql" firstAttribute="leading" secondItem="x75-68-1xA" secondAttribute="leading" id="gGM-eR-w47"/>
+                            <constraint firstAttribute="trailing" secondItem="U7o-OU-pql" secondAttribute="trailing" id="id3-3I-xND"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qfl-ia-nEW"/>
+                    <connections>
+                        <outlet property="mapView" destination="U7o-OU-pql" id="QQX-RS-75m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a4M-6G-kz1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-350" y="82"/>
+        </scene>
+    </scenes>
 </document>

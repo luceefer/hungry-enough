@@ -13,7 +13,6 @@
 		409E9CA01EE286C2005AFDBD /* HungryEnoughUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409E9C9F1EE286C2005AFDBD /* HungryEnoughUITests.swift */; };
 		40E3FBC01EE4284A006F843A /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3FB711EE4284A006F843A /* BaseNavigationController.swift */; };
 		40E3FBC11EE4284A006F843A /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3FB721EE4284A006F843A /* BasePresenter.swift */; };
-		40E3FBC21EE4284A006F843A /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3FB731EE4284A006F843A /* BaseTabBarController.swift */; };
 		40E3FBC31EE4284A006F843A /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3FB741EE4284A006F843A /* BaseView.swift */; };
 		40E3FBCD1EE4284A006F843A /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3FB831EE4284A006F843A /* HomeController.swift */; };
 		40E3FBCE1EE4284A006F843A /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3FB841EE4284A006F843A /* HomePresenter.swift */; };
@@ -93,7 +92,6 @@
 		40E3FB6C1EE427BA006F843A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		40E3FB711EE4284A006F843A /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		40E3FB721EE4284A006F843A /* BasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
-		40E3FB731EE4284A006F843A /* BaseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		40E3FB741EE4284A006F843A /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		40E3FB831EE4284A006F843A /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		40E3FB841EE4284A006F843A /* HomePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -282,7 +280,6 @@
 			children = (
 				40E3FB711EE4284A006F843A /* BaseNavigationController.swift */,
 				40E3FB721EE4284A006F843A /* BasePresenter.swift */,
-				40E3FB731EE4284A006F843A /* BaseTabBarController.swift */,
 				40E3FB741EE4284A006F843A /* BaseView.swift */,
 			);
 			path = Base;
@@ -522,6 +519,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TPKeyboardAvoidingKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftMessages.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Hero.framework",
 			);
 			outputPaths = (
 			);
@@ -554,7 +552,6 @@
 				40E3FBDE1EE4284A006F843A /* UIColor.swift in Sources */,
 				40E3FBC11EE4284A006F843A /* BasePresenter.swift in Sources */,
 				40E3FBE01EE4284A006F843A /* UIView.swift in Sources */,
-				40E3FBC21EE4284A006F843A /* BaseTabBarController.swift in Sources */,
 				40E3FBC31EE4284A006F843A /* BaseView.swift in Sources */,
 				40E3FBF51EE4284A006F843A /* YelpApi.swift in Sources */,
 				40E3FBE11EE4284A006F843A /* AppTheme.swift in Sources */,

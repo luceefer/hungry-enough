@@ -13,25 +13,6 @@ class BaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBar.isTranslucent = false
-        self.delegate = self
-    }
-}
-
-extension BaseNavigationController: UINavigationControllerDelegate {
-
-    func navigationController(
-        _ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        self.topViewController?.navigationItem.backBarButtonItem =
-            UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-    }
-}
-
-// MARK: - Navigation Support
-
-extension UIViewController {
-
-    var navigationIdentifier: String {
-        return String(describing: type(of: self))
     }
 }
 
