@@ -13,6 +13,8 @@ import GoogleMaps
 class HomeController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
 
     var markers = [GMSMarker]()
     var presenter: HomePresenter?
@@ -51,6 +53,10 @@ extension HomeController: HomeView {
 
     func show(loading: Bool) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = loading
+        if loading {
+            self.infoLabel.text = "Searching..."
+            self.subtitleLabel.text = ""
+        }
     }
 
     func show(error: String) {
@@ -75,6 +81,15 @@ extension HomeController: HomeView {
             marker.iconView = self.markerIcon
             marker.map = self.mapView
             return marker
+        }
+
+        // display info
+        if result.businesses.isEmpty {
+            self.infoLabel.text = "Oops, nothing found"
+            self.subtitleLabel.text = ""
+        } else {
+            self.infoLabel.text = "Anything interested?"
+            self.subtitleLabel.text = "Found \(result.total) so far..."
         }
     }
 }

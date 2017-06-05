@@ -28,6 +28,7 @@ protocol HomeView: BaseView {
 class HomePresenter: NSObject, BasePresenter {
 
     weak var view: HomeView!
+    var skipUpdate = false
 
     let provider: MoyaProvider<YelpApi>
     let locationManager = CLLocationManager()
@@ -78,11 +79,20 @@ class HomePresenter: NSObject, BasePresenter {
 extension HomePresenter: GMSMapViewDelegate {
 
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        self.findNearbyBusiness(at: position)
+        if !skipUpdate {
+            self.findNearbyBusiness(at: position)
+        } else {
+            self.skipUpdate = false
+        }
     }
 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        let position = GMSCameraPosition.camera(
+            withLatitude: marker.position.latitude, longitude: marker.position.longitude, zoom: 18.0)
+
+        self.skipUpdate = true
         mapView.selectedMarker = marker
+        mapView.animate(to: position)
         return true
     }
 
@@ -104,8 +114,9 @@ extension HomePresenter: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             let position = GMSCameraPosition.camera(
-                withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 12.0)
+                withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 18.0)
             self.view?.navigate(to: position)
+            self.findNearbyBusiness(at: position)
             self.locationManager.stopUpdatingLocation()
         }
     }

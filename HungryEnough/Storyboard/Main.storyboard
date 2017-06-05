@@ -12,7 +12,7 @@
         <scene sceneID="OaS-Fk-SiZ">
             <objects>
                 <navigationController id="N4V-cI-uYj" customClass="BaseNavigationController" customModule="HungryEnough" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="n6K-yO-qUa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="n6K-yO-qUa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -37,26 +37,62 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7o-OU-pql" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="531"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4l-yv-2lD">
+                                <rect key="frame" x="0.0" y="595" width="375" height="72"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vgd-ec-OGF">
+                                        <rect key="frame" x="12" y="8" width="351" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="mfU-JP-daQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <color key="textColor" red="0.0" green="0.45098039220000002" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total 1500 so far.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHj-PM-2QJ">
+                                        <rect key="frame" x="12" y="40" width="351" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="eHj-PM-2QJ" secondAttribute="bottom" constant="8" id="KnC-yB-xv1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vgd-ec-OGF" secondAttribute="trailing" constant="12" id="O3N-5w-xYg"/>
+                                    <constraint firstItem="eHj-PM-2QJ" firstAttribute="leading" secondItem="r4l-yv-2lD" secondAttribute="leading" constant="12" id="Q5s-Wc-PYn"/>
+                                    <constraint firstItem="Vgd-ec-OGF" firstAttribute="top" secondItem="r4l-yv-2lD" secondAttribute="top" constant="8" id="Tkb-2H-LRf"/>
+                                    <constraint firstAttribute="height" constant="72" id="UeY-3I-MgO"/>
+                                    <constraint firstItem="Vgd-ec-OGF" firstAttribute="leading" secondItem="r4l-yv-2lD" secondAttribute="leading" constant="12" id="pdb-GM-n24"/>
+                                    <constraint firstAttribute="trailing" secondItem="eHj-PM-2QJ" secondAttribute="trailing" constant="12" id="tXX-m2-faZ"/>
+                                    <constraint firstItem="eHj-PM-2QJ" firstAttribute="top" secondItem="Vgd-ec-OGF" secondAttribute="bottom" id="vI0-jK-vHo"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="AWq-Zt-ygk" firstAttribute="top" secondItem="U7o-OU-pql" secondAttribute="bottom" id="7Mt-Hc-Uqw"/>
+                            <constraint firstItem="r4l-yv-2lD" firstAttribute="top" secondItem="U7o-OU-pql" secondAttribute="bottom" id="9Qo-gB-1kX"/>
                             <constraint firstItem="U7o-OU-pql" firstAttribute="top" secondItem="Y4T-zm-9Yt" secondAttribute="bottom" id="9t7-qb-c3Q"/>
+                            <constraint firstAttribute="trailing" secondItem="r4l-yv-2lD" secondAttribute="trailing" id="a4K-6j-uYV"/>
+                            <constraint firstItem="AWq-Zt-ygk" firstAttribute="top" secondItem="r4l-yv-2lD" secondAttribute="bottom" id="cy5-ea-Wd2"/>
                             <constraint firstItem="U7o-OU-pql" firstAttribute="leading" secondItem="x75-68-1xA" secondAttribute="leading" id="gGM-eR-w47"/>
                             <constraint firstAttribute="trailing" secondItem="U7o-OU-pql" secondAttribute="trailing" id="id3-3I-xND"/>
+                            <constraint firstItem="r4l-yv-2lD" firstAttribute="leading" secondItem="x75-68-1xA" secondAttribute="leading" id="tXR-S0-3lu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qfl-ia-nEW"/>
                     <connections>
+                        <outlet property="infoLabel" destination="Vgd-ec-OGF" id="aZp-M7-uxP"/>
                         <outlet property="mapView" destination="U7o-OU-pql" id="QQX-RS-75m"/>
+                        <outlet property="subtitleLabel" destination="eHj-PM-2QJ" id="Bgp-ag-NL0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a4M-6G-kz1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-350" y="82"/>
+            <point key="canvasLocation" x="-351.19999999999999" y="81.409295352323838"/>
         </scene>
     </scenes>
 </document>
