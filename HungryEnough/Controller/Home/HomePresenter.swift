@@ -11,6 +11,7 @@ import CoreLocation
 import GoogleMaps
 import Moya
 import SwiftyJSON
+import Kingfisher
 
 protocol HomeView: BaseView {
 
@@ -23,12 +24,21 @@ protocol HomeView: BaseView {
     func navigate(to position: GMSCameraPosition)
 
     func show(result: SearchResult)
+
+    func buildInfoWindow(for business: Business) -> UIView?
 }
 
 class HomePresenter: NSObject, BasePresenter {
 
     weak var view: HomeView!
     var skipUpdate = false
+    var searchResult: SearchResult? {
+        didSet {
+            if let searchResult = self.searchResult {
+                self.view?.show(result: searchResult)
+            }
+        }
+    }
 
     let provider: MoyaProvider<YelpApi>
     let locationManager = CLLocationManager()
@@ -63,9 +73,7 @@ class HomePresenter: NSObject, BasePresenter {
                         if let error = apiResponse.error {
                             self.view?.show(error: error.localizedDescription)
                         } else {
-                            if let searchResult = apiResponse.get(SearchResult.self) {
-                                self.view?.show(result: searchResult)
-                            }
+                            self.searchResult = apiResponse.get(SearchResult.self)
                         }
                     case let .failure(error):
                         self.view?.show(error: error.localizedDescription)
@@ -88,7 +96,7 @@ extension HomePresenter: GMSMapViewDelegate {
 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let position = GMSCameraPosition.camera(
-            withLatitude: marker.position.latitude, longitude: marker.position.longitude, zoom: 18.0)
+            withLatitude: marker.position.latitude, longitude: marker.position.longitude, zoom: 14.0)
 
         self.skipUpdate = true
         mapView.selectedMarker = marker
@@ -97,6 +105,13 @@ extension HomePresenter: GMSMapViewDelegate {
     }
 
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+    }
+
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        if let business = self.searchResult?.businesses.filter({ marker.snippet == "\($0.id)" }).first {
+            return self.view?.buildInfoWindow(for: business)
+        }
+        return nil
     }
 }
 
@@ -114,7 +129,7 @@ extension HomePresenter: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             let position = GMSCameraPosition.camera(
-                withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 18.0)
+                withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 14.0)
             self.view?.navigate(to: position)
             self.findNearbyBusiness(at: position)
             self.locationManager.stopUpdatingLocation()

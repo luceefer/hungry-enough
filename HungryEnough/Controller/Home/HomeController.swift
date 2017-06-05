@@ -9,6 +9,7 @@
 import UIKit
 import Moya
 import GoogleMaps
+import Kingfisher
 
 class HomeController: UIViewController {
 
@@ -76,10 +77,10 @@ extension HomeController: HomeView {
         self.markers = result.businesses.map { business -> GMSMarker in
             let position = CLLocationCoordinate2D(latitude: business.latitide, longitude: business.longitude)
             let marker = GMSMarker(position: position)
-            marker.title = business.name
-            marker.snippet = "Rating \(business.rating), \(business.isClosed ? "Closed :(" : "Opening!!!")"
+            marker.snippet = "\(business.id)"
             marker.iconView = self.markerIcon
             marker.map = self.mapView
+            marker.appearAnimation = .pop
             return marker
         }
 
@@ -91,5 +92,24 @@ extension HomeController: HomeView {
             self.infoLabel.text = "Anything interested?"
             self.subtitleLabel.text = "Found \(result.total) so far..."
         }
+    }
+
+    func buildInfoWindow(for business: Business) -> UIView? {
+        if let view = Bundle.main.loadNibNamed("InfoWindow", owner: self, options: nil)?[0] as? InfoWindow {
+            view.nameLabel.text = business.name
+            view.logoImageView.contentMode = .scaleAspectFit
+            view.logoImageView.clipsToBounds = true
+            view.logoImageView.kf.setImage(with: URL(string: business.imageUrl), placeholder: UIImage(named: "Marker"))
+            view.ratingLabel.text = String(format: "%.1f", business.rating)
+            view.addressLabel.text = business.location
+
+            view.frame = CGRect(x: 0, y: 0, width: 180, height: 160)
+            view.layer.cornerRadius = 4
+            view.clipsToBounds = true
+            view.layer.shadowOffset = CGSize(width: 2, height: 2)
+            view.layer.shadowColor = UIColor.darkGray.cgColor
+            return view
+        }
+        return nil
     }
 }
