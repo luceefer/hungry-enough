@@ -6,7 +6,7 @@ A demo iOS app for using Yelp API to get nearby restaurants. I'm so hungryyyy!
 
 #### Credentials ####
 
-As this app use Google Maps API and Yelp API, it requires Google Maps API Key and Yelp Access Token/Secret Key to be modified. Follow [https://stackoverflow.com/questions/17393053/where-to-set-environment-variables-for-app](this tutorial) to enter `GOOGLE_MAPS_API_KEY`, `YELP_CLIENT_ID`, `YELP_CLIENT_SECRET` to get the app works.
+As this app use Google Maps API and Yelp API, it requires Google Maps API Key and Yelp Access Token/Secret Key to be modified. Follow [this tutorial](https://stackoverflow.com/questions/17393053/where-to-set-environment-variables-for-app) to enter `GOOGLE_MAPS_API_KEY`, `YELP_CLIENT_ID`, `YELP_CLIENT_SECRET` to get the app works.
 
 #### Installation ####
 
