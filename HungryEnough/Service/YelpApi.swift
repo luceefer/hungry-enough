@@ -13,29 +13,52 @@ import Moya
 
 enum YelpApi {
 
-    case logout
+    case auth(clientId: String, clientSecret: String)
+    case search(latitude: Double, longitude: Double)
 }
 
 extension YelpApi: TargetType {
 
     var baseURL: URL {
-        return URL(string: "https://api.yelp.com")!
+        return URL(string: "https://api.yelp.com/")!
     }
 
     var path: String {
-        return ""
+        switch self {
+        case .auth:
+            return "oauth2/token"
+        case .search:
+            return "v3/businesses/search"
+        }
     }
 
     var method: Moya.Method {
-        return .post
+        switch self {
+        case .auth:
+            return .post
+        case .search:
+            return .get
+        }
     }
 
     var parameters: [String : Any]? {
-        return nil
+        switch self {
+        case .auth(let clientId, let clientSecret):
+            return [
+                "client_id": clientId,
+                "client_secret": clientSecret,
+                "grant_type": "client_credentials"
+            ]
+        case .search(let latitude, let longitude):
+            return [
+                "latitude": latitude,
+                "longitude": longitude
+            ]
+        }
     }
 
     var parameterEncoding: ParameterEncoding {
-        return JSONEncoding.default
+        return URLEncoding.default
     }
 
     var task: Task {

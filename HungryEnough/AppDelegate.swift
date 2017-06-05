@@ -17,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey(ProcessInfo.processInfo.environment["GOOGLE_MAPS_API_KEY"]!)
+        Session.initialize(
+            yelpClientId: ProcessInfo.processInfo.environment["YELP_CLIENT_ID"]!,
+            yelpClientSecret: ProcessInfo.processInfo.environment["YELP_CLIENT_SECRET"]!
+        )
         return true
     }
 }

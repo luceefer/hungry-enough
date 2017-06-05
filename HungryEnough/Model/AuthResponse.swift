@@ -11,11 +11,13 @@ import SwiftyJSON
 
 class AuthResponse: Jsonable {
 
-    var token = ""
-    var user: User
+    var accessToken = ""
+    var expiresIn = 0
+    var tokenType = ""
 
     required init(json: JSON) {
-        self.token = json["token"].stringValue
-        self.user = User(json: json["user"])
+        self.accessToken = json["access_token"].stringValue
+        self.expiresIn = json["expires_in"].intValue
+        self.tokenType = json["token_type"].stringValue
     }
 }

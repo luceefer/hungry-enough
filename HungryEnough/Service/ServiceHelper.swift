@@ -18,7 +18,9 @@ struct ServiceHelper {
         var headers = [String: String]()
 
         // authorization
-        headers["Authorization"] = "Bearer \(1)"
+        if let authResponse = Session.shared.currentAuth {
+            headers["Authorization"] = "\(authResponse.tokenType) \(authResponse.accessToken)"
+        }
 
         let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
         return defaultEndpoint.adding(newHTTPHeaderFields: headers)
