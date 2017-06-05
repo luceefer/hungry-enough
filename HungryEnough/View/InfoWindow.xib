@@ -33,7 +33,7 @@
                     <color key="textColor" red="1" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oPl-zh-rU2">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Marker" translatesAutoresizingMaskIntoConstraints="NO" id="oPl-zh-rU2">
                     <rect key="frame" x="0.0" y="31" width="376" height="96"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="96" id="6lh-0y-mcN"/>
@@ -75,4 +75,7 @@
             <point key="canvasLocation" x="34" y="-148.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="Marker" width="48" height="48"/>
+    </resources>
 </document>

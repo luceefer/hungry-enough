@@ -19,6 +19,7 @@ class HomeController: UIViewController {
 
     var markers = [GMSMarker]()
     var presenter: HomePresenter?
+    var targetBusiness: Business?
 
     lazy var markerIcon: UIView = {
         let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
@@ -32,6 +33,13 @@ class HomeController: UIViewController {
         self.setupUi()
 
         self.presenter?.startLocationRequest()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showBusinessView", let vc = segue.destination as? BusinessViewController {
+            vc.business = self.targetBusiness
+            self.targetBusiness = nil
+        }
     }
 
     // MARK: - Private
@@ -65,6 +73,8 @@ extension HomeController: HomeView {
     }
 
     func viewBusiness(business: Business) {
+        self.targetBusiness = business
+        self.performSegue(withIdentifier: "showBusinessView", sender: nil)
     }
 
     func navigate(to position: GMSCameraPosition) {
