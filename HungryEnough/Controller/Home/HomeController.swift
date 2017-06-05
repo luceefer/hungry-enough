@@ -17,6 +17,13 @@ class HomeController: UIViewController {
     var markers = [GMSMarker]()
     var presenter: HomePresenter?
 
+    lazy var markerIcon: UIView = {
+        let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        view.image = UIImage(named: "Marker")
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUi()
@@ -43,13 +50,14 @@ class HomeController: UIViewController {
 extension HomeController: HomeView {
 
     func show(loading: Bool) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = loading
     }
 
     func show(error: String) {
         Tool.showError(error)
     }
 
-    func viewBusiness() {
+    func viewBusiness(business: Business) {
     }
 
     func navigate(to position: GMSCameraPosition) {
@@ -63,6 +71,8 @@ extension HomeController: HomeView {
             let position = CLLocationCoordinate2D(latitude: business.latitide, longitude: business.longitude)
             let marker = GMSMarker(position: position)
             marker.title = business.name
+            marker.snippet = "Rating \(business.rating), \(business.isClosed ? "Closed :(" : "Opening!!!")"
+            marker.iconView = self.markerIcon
             marker.map = self.mapView
             return marker
         }

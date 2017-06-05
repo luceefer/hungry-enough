@@ -18,7 +18,7 @@ protocol HomeView: BaseView {
 
     func show(error: String)
 
-    func viewBusiness()
+    func viewBusiness(business: Business)
 
     func navigate(to position: GMSCameraPosition)
 
