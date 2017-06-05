@@ -105,13 +105,14 @@ extension HomePresenter: GMSMapViewDelegate {
     }
 
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-        if let business = self.searchResult?.businesses.filter({ marker.snippet == "\($0.id)" }).first {
+        if let business = self.searchResult?.businesses.filter({ marker.snippet == $0.id }).first {
             self.view?.viewBusiness(business: business)
         }
     }
 
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        if let business = self.searchResult?.businesses.filter({ marker.snippet == "\($0.id)" }).first {
+        if let business = self.searchResult?.businesses.filter({ marker.snippet == $0.id }).first {
+            marker.tracksInfoWindowChanges = true
             return self.view?.buildInfoWindow(for: business)
         }
         return nil

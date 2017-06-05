@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class Business: Jsonable {
 
-    var id = 0
+    var id = ""
     var name = ""
     var imageUrl = ""
     var isClosed = false
@@ -27,7 +27,7 @@ class Business: Jsonable {
     var distance = 0.0
 
     required init(json: JSON) {
-        self.id = json["id"].intValue
+        self.id = json["id"].stringValue
         self.name = json["name"].stringValue
         self.imageUrl = json["image_url"].stringValue
         self.isClosed = json["is_closed"].boolValue

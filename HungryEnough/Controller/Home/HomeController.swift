@@ -87,7 +87,7 @@ extension HomeController: HomeView {
         self.markers = result.businesses.map { business -> GMSMarker in
             let position = CLLocationCoordinate2D(latitude: business.latitide, longitude: business.longitude)
             let marker = GMSMarker(position: position)
-            marker.snippet = "\(business.id)"
+            marker.snippet = business.id
             marker.iconView = self.markerIcon
             marker.map = self.mapView
             marker.appearAnimation = .pop
